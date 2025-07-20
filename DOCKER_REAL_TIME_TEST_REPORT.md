@@ -32,11 +32,11 @@ Successfully tested the complete StandardBounties Docker environment with real-t
 
 ### ✅ API Key Integration
 Tested with provided API keys:
-- **Infura API**: `fde9f3c4c3a042a6992b3beb5f95590c`
-- **Etherscan API**: `5IIWW32VEIUMXAFAVW953VZQ829BBMY9BG`  
-- **Alchemy API**: `7rd1AIBXtN8S0CZcQ6QdTwAr4duBm8vr`
-- **Forta Key ID**: `58c8b023b2048c0f`
-- **Forta API Key**: `58c8b023b2048c0f:07114d3efd75a4c625fce48ce9ffac2f5a448d9f32fffe76df397d6b037deda5`
+- **Infura API**: `xxxx`
+- **Etherscan API**: `xxxx`  
+- **Alchemy API**: `xxxx`
+- **Forta Key ID**: `xxxx`
+- **Forta API Key**: `xxxx`
 
 ## 🌐 Real-Time API Testing Results
 
