@@ -243,10 +243,10 @@ Dashboard Features Tested:
 
 ### Provided API Keys Successfully Tested
 ```
-MetaMask/Infura: fde9f3c4c3a042a6992b3beb5f95590c ✅
-Etherscan: 5IIWW32VEIUMXAFAVW953VZQ829BBMY9BG ✅
-Alchemy: 7rd1AIBXtN8S0CZcQ6QdTwAr4duBm8vr ✅
-Forta: 58c8b023b2048c0f ✅
+MetaMask/Infura: xxxx ✅
+Etherscan: xxxx ✅
+Alchemy: xxxx ✅
+Forta: xxxx ✅
 ```
 
 ### API Functionality Validated
