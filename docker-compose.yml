@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+  standardbounties:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: standardbounties_app
+    environment:
+      - NODE_ENV=development
+      - NETWORK=${NETWORK:-sepolia}
+      - INFURA_API_KEY=${INFURA_API_KEY}
+      - ETHERSCAN_API_KEY=${ETHERSCAN_API_KEY}
+      - ALCHEMY_API_KEY=${ALCHEMY_API_KEY}
+      - FORTA_KEY_ID=${FORTA_KEY_ID}
+      - FORTA_API_KEY=${FORTA_API_KEY}
+      - PRIVATE_KEY=${PRIVATE_KEY}
+      - MNEMONIC=${MNEMONIC}
+    volumes:
+      - ./deployments:/app/deployments
+      - ./logs:/app/logs
+      - ./config:/app/config
+      - bounty_data:/app/data
+    ports:
+      - "3000:3000"
+      - "8545:8545"
+    networks:
+      - bounty_network
+    stdin_open: true
+    tty: true
+    command: ["menu"]
+
+  # Hardhat Node (for local testing)
+  hardhat-node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hardhat_node
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./deployments:/app/deployments
+      - ./logs:/app/logs
+    ports:
+      - "8546:8545"
+    networks:
+      - bounty_network
+    command: ["start-node"]
+    profiles:
+      - local
+
+  # API Monitor Service
+  api-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_monitor
+    environment:
+      - NODE_ENV=production
+      - INFURA_API_KEY=${INFURA_API_KEY}
+      - ETHERSCAN_API_KEY=${ETHERSCAN_API_KEY}
+      - ALCHEMY_API_KEY=${ALCHEMY_API_KEY}
+      - FORTA_KEY_ID=${FORTA_KEY_ID}
+      - FORTA_API_KEY=${FORTA_API_KEY}
+    volumes:
+      - ./deployments:/app/deployments
+      - ./logs:/app/logs
+    networks:
+      - bounty_network
+    command: ["api-health-check"]
+    profiles:
+      - monitoring
+    restart: unless-stopped
+
+  # Event Monitor Service
+  event-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: event_monitor
+    environment:
+      - NODE_ENV=production
+      - NETWORK=${NETWORK:-sepolia}
+      - INFURA_API_KEY=${INFURA_API_KEY}
+      - MONITOR_DURATION=${MONITOR_DURATION:-3600000}
+    volumes:
+      - ./deployments:/app/deployments
+      - ./logs:/app/logs
+    networks:
+      - bounty_network
+    command: ["event-monitor"]
+    profiles:
+      - monitoring
+    restart: unless-stopped
+
+volumes:
+  bounty_data:
+    driver: local
+
+networks:
+  bounty_network:
+    driver: bridge

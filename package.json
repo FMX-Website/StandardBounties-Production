@@ -1,0 +1,61 @@
+{
+  "name": "standardbounties-production",
+  "version": "1.0.0",
+  "description": "Production-ready StandardBounties smart contract implementation",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "test:coverage": "hardhat coverage",
+    "test:gas": "REPORT_GAS=true hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:goerli": "hardhat run scripts/deploy.js --network goerli",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "deploy:mainnet": "hardhat run scripts/deploy.js --network mainnet",
+    "verify:goerli": "hardhat verify --network goerli",
+    "verify:sepolia": "hardhat verify --network sepolia",
+    "verify:mainnet": "hardhat verify --network mainnet",
+    "flatten": "hardhat flatten contracts/StandardBounties.sol > flattened/StandardBounties.sol",
+    "size": "hardhat size-contracts",
+    "clean": "hardhat clean",
+    "format": "prettier --write 'contracts/**/*.sol' 'test/**/*.js' 'scripts/**/*.js'",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "slither": "slither .",
+    "mythx": "mythx analyze"
+  },
+  "keywords": [
+    "ethereum",
+    "solidity",
+    "smart-contracts",
+    "bounties",
+    "eip-1337",
+    "decentralized",
+    "web3"
+  ],
+  "author": "StandardBounties Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@nomicfoundation/hardhat-verify": "^1.0.0",
+    "@openzeppelin/contracts": "^4.9.0",
+    "chai": "^4.3.0",
+    "dotenv": "^16.0.0",
+    "ethers": "^6.4.0",
+    "hardhat": "^2.17.0",
+    "hardhat-contract-sizer": "^2.10.0",
+    "hardhat-gas-reporter": "^1.0.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-solidity": "^1.1.0",
+    "solhint": "^3.6.0",
+    "solidity-coverage": "^0.8.0"
+  },
+  "dependencies": {
+    "axios": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
